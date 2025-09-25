@@ -16,6 +16,15 @@
       <li><a href="#about">About</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <div class="cart-container">
+      🛒 <span id="cartCount">0</span>
+      <div id="cartDropdown" class="cart-dropdown">
+        <h3>Your Cart</h3>
+        <div id="cartItems"></div>
+        <p id="cartTotal">Total: $0</p>
+        <button id="checkoutBtn">Checkout</button>
+      </div>
+    </div>
   </nav>
 
   <!-- Hero -->
@@ -27,68 +36,8 @@
   <!-- Menu Section -->
   <section id="menu" class="menu">
     <h2>Our Menu</h2>
-    
-    <!-- Starters -->
-    <div class="menu-category">
-      <h3>Starters</h3>
-      <div class="menu-grid">
-        <div class="menu-card">
-          <img src="https://source.unsplash.com/400x300/?soup" alt="Tomato Soup">
-          <h4>Tomato Soup</h4>
-          <p class="desc">Fresh tomatoes with herbs & cream</p>
-          <p class="price">$5.99</p>
-        </div>
-        <div class="menu-card">
-          <img src="https://source.unsplash.com/400x300/?salad" alt="Caesar Salad">
-          <h4>Caesar Salad</h4>
-          <p class="desc">Crispy lettuces, parmesan & croutons</p>
-          <p class="price">$7.49</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Main Courses -->
-    <div class="menu-category">
-      <h3>Main Courses</h3>
-      <div class="menu-grid">
-        <div class="menu-card">
-          <img src="https://source.unsplash.com/400x300/?steak" alt="Grilled Steak">
-          <h4>Grilled Steak</h4>
-          <p class="desc">Juicy beef steak with garlic butter</p>
-          <p class="price">$18.99</p>
-        </div>
-        <div class="menu-card">
-          <img src="https://source.unsplash.com/400x300/?pasta" alt="Creamy Pasta">
-          <h4>Creamy Pasta</h4>
-          <p class="desc">Penne pasta in white cream sauce</p>
-          <p class="price">$14.49</p>
-        </div>
-        <div class="menu-card">
-          <img src="https://source.unsplash.com/400x300/?pizza" alt="Margherita Pizza">
-          <h4>Margherita Pizza</h4>
-          <p class="desc">Classic pizza with mozzarella & basil</p>
-          <p class="price">$12.99</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- Desserts -->
-    <div class="menu-category">
-      <h3>Desserts</h3>
-      <div class="menu-grid">
-        <div class="menu-card">
-          <img src="https://source.unsplash.com/400x300/?icecream" alt="Ice Cream Sundae">
-          <h4>Ice Cream Sundae</h4>
-          <p class="desc">Vanilla ice cream with chocolate syrup</p>
-          <p class="price">$6.49</p>
-        </div>
-        <div class="menu-card">
-          <img src="https://source.unsplash.com/400x300/?cake" alt="Chocolate Cake">
-          <h4>Chocolate Cake</h4>
-          <p class="desc">Rich & moist dark chocolate cake</p>
-          <p class="price">$8.99</p>
-        </div>
-      </div>
+    <div class="menu-grid" id="menuGrid">
+      <!-- Dishes will be dynamically loaded here -->
     </div>
   </section>
 
@@ -109,5 +58,7 @@
   <footer class="footer">
     <p>&copy; 2025 Delish Bites. All rights reserved.</p>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
