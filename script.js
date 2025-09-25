@@ -1,52 +1,48 @@
-const menuContainer = document.getElementById("menuContainer");
 const cartDropdown = document.getElementById("cartDropdown");
 const cartCount = document.getElementById("cartCount");
 const cartItemsContainer = document.getElementById("cartItems");
 const cartTotal = document.getElementById("cartTotal");
-
 let cart = [];
 
-// Map restaurant-style categories to DummyJSON categories
-const categoryMap = {
-  "Starters": "groceries",
-  "Main Courses": "furniture",
-  "Desserts": "fragrances"
-};
-
-// Fetch menu by categories
+// Load menu from TheMealDB
 async function loadMenu() {
-  for (const [title, apiCategory] of Object.entries(categoryMap)) {
-    const res = await fetch(`https://dummyjson.com/products/category/${apiCategory}?limit=3`);
-    const data = await res.json();
+  try {
+    const response = await fetch("https://www.themealdb.com/api/json/v1/1/search.php?f=c"); 
+    const data = await response.json();
 
-    const categoryDiv = document.createElement("div");
-    categoryDiv.classList.add("menu-category");
-    categoryDiv.innerHTML = `<h3>${title}</h3><div class="menu-grid"></div>`;
-    const grid = categoryDiv.querySelector(".menu-grid");
+    const menuGrid = document.getElementById("menuGrid");
+    menuGrid.innerHTML = "";
 
-    data.products.forEach(product => {
+    data.meals.forEach(meal => {
       const card = document.createElement("div");
       card.classList.add("menu-card");
-      card.innerHTML = `
-        <img src="${product.thumbnail}" alt="${product.title}">
-        <h4>${product.title}</h4>
-        <p class="desc">${product.description.substring(0, 50)}...</p>
-        <p class="price">$${product.price}</p>
-        <button class="add-cart">Add to Cart</button>
-      `;
-      grid.appendChild(card);
 
-      card.querySelector(".add-cart").addEventListener("click", () => {
-        addToCart(product);
+      const price = (Math.random() * 20 + 5).toFixed(2); // random price
+
+      card.innerHTML = `
+        <img src="${meal.strMealThumb}" alt="${meal.strMeal}">
+        <h4>${meal.strMeal}</h4>
+        <p class="desc">${meal.strCategory}</p>
+        <p class="price">$${price}</p>
+        <button class="add-to-cart">Add to Cart</button>
+      `;
+
+      menuGrid.appendChild(card);
+
+      // Add to cart button
+      card.querySelector(".add-to-cart").addEventListener("click", () => {
+        addToCart({
+          id: meal.idMeal,
+          title: meal.strMeal,
+          price: parseFloat(price),
+          thumbnail: meal.strMealThumb
+        });
       });
     });
-
-    menuContainer.appendChild(categoryDiv);
+  } catch (err) {
+    console.error("Error loading menu:", err);
   }
 }
-
-// Load menu
-loadMenu();
 
 // Toggle cart dropdown
 document.querySelector(".cart-container").addEventListener("click", () => {
@@ -85,7 +81,7 @@ function updateCart() {
   cartTotal.textContent = `Total: $${total.toFixed(2)}`;
 }
 
-// Remove item from cart
+// Remove from cart
 function removeFromCart(id) {
   cart = cart.filter(item => item.id !== id);
   updateCart();
@@ -101,3 +97,6 @@ document.getElementById("checkoutBtn").addEventListener("click", () => {
   cart = [];
   updateCart();
 });
+
+// Load menu on page start
+document.addEventListener("DOMContentLoaded", loadMenu);
