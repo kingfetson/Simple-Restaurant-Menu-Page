@@ -219,14 +219,6 @@ body {
   background: #238636;
 }
 
-
-/* Footer */
-.footer {
-  text-align: center;
-  padding: 1rem;
-  background: #333;
-  color: white;
-}
 /* Cart Dropdown */
 .cart-container {
   position: relative;
@@ -316,4 +308,71 @@ body {
   max-width: 400px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+/* Footer */
+.footer {
+  background: #1a1a1a;
+  color: #f1f1f1;
+  padding: 40px 20px;
+  margin-top: 40px;
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 30px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.footer h3, .footer h4 {
+  color: #e63946;
+  margin-bottom: 10px;
+}
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-links ul li {
+  margin-bottom: 8px;
+}
+
+.footer-links ul li a {
+  color: #f1f1f1;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer-links ul li a:hover {
+  color: #e63946;
+}
+
+.footer-contact p {
+  margin: 5px 0;
+}
+
+.footer-social .social-icons {
+  display: flex;
+  gap: 15px;
+}
+
+.footer-social .social-icons img {
+  width: 22px;
+  height: 22px;
+  filter: invert(1);
+  transition: transform 0.3s, filter 0.3s;
+}
+
+.footer-social .social-icons img:hover {
+  transform: scale(1.2);
+  filter: invert(42%) sepia(100%) saturate(500%) hue-rotate(340deg);
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 0.9rem;
+  color: #aaa;
 }
